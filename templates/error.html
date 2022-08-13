@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>FashoMart</title>
+        <!--for python flask-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}">
+        <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+    </head>
+    <body>
+        <h2>error occured</h2>
+        
+        <br>
+        <a type="button" class="btn btn-primary btn-block" href="{{ url_for('home') }}">click here to go to homepage</a>
+    </body>
+</html>

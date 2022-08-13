@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            FashoMart
+        </title>
+        <link rel="stylesheet" href="cart.css">
+        <link href="bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap-grid.min.css" rel="stylesheet">
+        <script src="bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!--for python flask-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}">
+        <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <img src="static\css\logo.jpg" alt="" width="90" height="90" class="d-inline-block align-text-top">
+              <a class="navbar-brand" href="{{ url_for('home') }}">FashoMart</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('aboutus') }}">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('supplier') }}">Supplier</a>
+                  </li>
+                  <li class="nav-item">
+                    <form action="newcart"  METHOD="POST">
+                      <input type="submit" value="Mycart" class="btn btn-light"></input>
+                    </form>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('login') }}">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <form action="logout"  METHOD="POST">
+                      <input type="submit" value="Logout" class="btn btn-light"></input>
+                    </form>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search product" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+<section class="pt-5 pb-5">
+    <div class="container">
+      <div class="row w-100">
+          <div class="col-lg-12 col-md-12 col-12">
+              <h3 class="display-5 mb-2 text-center">Shopping Cart</h3>
+              <p class="mb-5 text-center">
+                  <i class="text-info font-weight-bold">3</i> items in your cart</p>
+              <table id="shoppingCart" class="table table-condensed table-responsive">
+                  <thead>
+                      <tr>
+                          <th style="width:60%">Product</th>
+                          <th style="width:12%">Price</th>
+                          <th style="width:10%">Quantity</th>
+                          <th style="width:16%"></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td data-th="Product">
+                              <div class="row">
+                                  <div class="col-md-3 text-left">
+                                      <img src="static\css\p1.jpg" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                  </div>
+                                  <div class="col-md-9 text-left mt-sm-2">
+                                      <h4>Earring</h4>
+                                      <p class="font-weight-light">from Khanishiq collections</p>
+                                  </div>
+                              </div>
+                          </td>
+                          <td data-th="Price">&#8377;18000</td>
+                          <td data-th="Quantity">
+                              <input type="number" class="form-control form-control-lg text-center" value="1">
+                          </td>
+                          <td class="actions" data-th="">
+                              <div class="text-right">
+                                  <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                      <i class="fas fa-sync"></i>
+                                  </button>
+                                  <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                      <i class="fas fa-trash"></i>
+                                  </button>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td data-th="Product">
+                              <div class="row">
+                                  <div class="col-md-3 text-left">
+                                      <img src="static\css\p2.jpg" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                  </div>
+                                  <div class="col-md-9 text-left mt-sm-2">
+                                      <h4>Silver chain</h4>
+                                      <p class="font-weight-light">from Aasha collections</p>
+                                  </div>
+                              </div>
+                          </td>
+                          <td data-th="Price">&#8377;10000</td>
+                          <td data-th="Quantity">
+                              <input type="number" class="form-control form-control-lg text-center" value="1">
+                          </td>
+                          <td class="actions" data-th="">
+                              <div class="text-right">
+                                  <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                      <i class="fas fa-sync"></i>
+                                  </button>
+                                  <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                      <i class="fas fa-trash"></i>
+                                  </button>
+                              </div>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td data-th="Product">
+                              <div class="row">
+                                  <div class="col-md-3 text-left">
+                                      <img src="static\css\p3.jpg" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                  </div>
+                                  <div class="col-md-9 text-left mt-sm-2">
+                                      <h4>Gold ring</h4>
+                                      <p class="font-weight-light">from Maiore collections</p>
+                                  </div>
+                              </div>
+                          </td>
+                          <td data-th="Price">&#8377;8000</td>
+                          <td data-th="Quantity">
+                              <input type="number" class="form-control form-control-lg text-center" value="1">
+                          </td>
+                          <td class="actions" data-th="">
+                              <div class="text-right">
+                                  <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                      <i class="fas fa-sync"></i>
+                                  </button>
+                                  <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                      <i class="fas fa-trash"></i>
+                                  </button>
+                              </div>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+              <div class="float-right text-right">
+                  <h4>Subtotal:</h4>
+                  <h1>&#8377;36000</h1>
+              </div>
+          </div>
+      </div>
+      <div class="row mt-4 d-flex align-items-center">
+          <div class="col-sm-6 order-md-2 text-right">
+              <a type="button" class="btn btn-outline-success px-3" href="{{ url_for('payment') }}"">Proceed to payment</a>
+          </div>
+          <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+            <a type="button" class="btn btn-outline-primary px-3" href="{{ url_for('home') }}"">Continue shopping</a>
+          </div>
+      </div>
+  </div>
+  </section>
+</body>
+</html>

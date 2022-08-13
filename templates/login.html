@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            FashoMart
+        </title>
+        <link rel="stylesheet" href="login.css">
+        <link href="bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap-grid.min.css" rel="stylesheet">
+        <script src="bootstrap.min.js"></script>
+        <!--for python flask-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}">
+        <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+    </head>
+    <body class="text-center">
+        <form class="form-login" action="log" method="post">
+          <img class="mb-4" src="static\css\logo2.jpg" alt="" width="80" height="100">
+          <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          <input type="email" id="inputEmail" class="form-control" name="lemail" placeholder="Email address" required autofocus>
+          <input type="password" id="inputPassword" class="form-control" name="lpassword" placeholder="Password" required>
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+          <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log in"></input>
+          <p class="mt-5 mb-3 text-muted">Dont have an account? <a href="{{ url_for('signin') }}">click here to signup</a></p>
+        </form>
+      </body>
+</html>

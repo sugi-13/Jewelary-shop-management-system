@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            FashoMart
+        </title>
+        <link rel="stylesheet" href="home.css">
+        <link href="bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap-grid.min.css" rel="stylesheet">
+        <script src="bootstrap.min.js"></script>
+        <!--for python flask-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/newcart.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}">
+        <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <img src="static\css\logo.jpg" alt="" width="90" height="90" class="d-inline-block align-text-top">
+          <a class="navbar-brand" href="{{ url_for('home') }}">FashoMart</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('aboutus') }}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('supplier') }}">Supplier</a>
+              </li>
+              <li class="nav-item">
+                <form action="newcart"  METHOD="POST">
+                  <input type="submit" value="Mycart" class="btn btn-light"></input>
+                </form>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ url_for('login') }}">Login</a>
+              </li>
+              <li class="nav-item">
+                <form action="logout"  METHOD="POST">
+                  <input type="submit" value="Logout" class="btn btn-light"></input>
+                </form>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search product" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+          <!--CARD GROUP-->
+          <div id="nc">
+          <form action="newcart"  METHOD="POST" >
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">PRODUCT ID</th>
+                  <th scope="col">PRODUCT NAME</th>
+                  <th scope="col">PRICE</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>{{row["pid"]}}</td>
+                    <td>{{row["pname"]}}</td>
+                    <td>{{row["pprice"]}}</td>
+                    <td>
+                      <form action="removeFromCart"  METHOD="POST">
+                        <input type="submit" value="remove from cart" class="btn btn-outline-danger"></input>
+                      </form>
+                    </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <div class="float-right text-right">
+              <h4>Subtotal:</h4>
+              <h1>&#8377; {{t}} </h1>
+          </div>
+            </form>
+            <div class="row mt-4 d-flex align-items-center">
+              <div class="col-sm-6 order-md-2 text-right">
+                  <form action="gotopayment"  METHOD="POST">
+                    <input type="hidden" value={{t}} name="total">
+                    <input type="submit" value="Go to Payment" class="btn btn-outline-success px-3"></input>
+                  </form>
+              </div>
+              <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+                <a type="button" class="btn btn-outline-primary px-3" href="{{ url_for('home') }}"">Continue shopping</a>
+              </div>
+          </div>
+        </div>
+    </body>
+</html>
